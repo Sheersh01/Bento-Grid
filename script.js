@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-    const tl= gsap.timeline();
+   if(window.innerWidth >= 768){ const tl= gsap.timeline();
     
     tl.from("#title", {
         opacity: 0, // Start fully transparent
@@ -42,7 +42,7 @@ document.addEventListener("DOMContentLoaded", () => {
         scale:1,
         stagger:0.05
        })
-    });
+    });}
 });
 const toggleSwitch = document.querySelector(".input");
 const body = document.querySelector(".main");
@@ -81,3 +81,24 @@ toggleSwitch.addEventListener("change", () => {
     });
   }
 });
+
+
+function toggleMainContent() {
+  const main = document.querySelector('.main');
+  const main2 = document.querySelector('.main2');
+
+  // Check screen width and toggle visibility
+  if (window.innerWidth >= 768) {
+    main.style.display = 'flex';
+    main2.style.display = 'none';
+  } else {
+    main.style.display = 'none';
+    main2.style.display = 'flex';
+  }
+}
+
+// Call the function on page load
+window.addEventListener('load', toggleMainContent);
+
+// Call the function on window resize
+window.addEventListener('resize', toggleMainContent);
